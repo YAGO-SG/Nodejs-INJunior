@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id  int @id @default(autoincrement())
+  id  Int @id @default(autoincrement())
 
   name  String @unique
   email String @unique
@@ -37,5 +37,5 @@ model Post {
   authorId  Int
 
   @@index([title])
-  @@map("post)
+  @@map("post")
 }
