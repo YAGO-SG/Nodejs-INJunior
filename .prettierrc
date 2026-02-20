@@ -1,5 +1,5 @@
 {
-	"semi": true,  // Habilita o ";" automatico quando formatado
-	"singleQuote": true, // true: as aspas duplas viram simples
-	"tabWidth": 2: // Define um espaçamento padrão do TAB
+	"semi": true,  
+	"singleQuote": true,
+	"tabWidth": 2
 }
