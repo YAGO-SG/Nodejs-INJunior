@@ -1,6 +1,8 @@
 import { prisma } from "@/libs/prisma.js";
 import type { FastifyRequest, FastifyReply } from "fastify";
 import { z } from 'zod'
+import { hash } from "bcryptjs";
+import { env } from "@/env/index.js";
 
 export async function patchUser(req: FastifyRequest, rep: FastifyReply) {
     try {
@@ -15,6 +17,8 @@ export async function patchUser(req: FastifyRequest, rep: FastifyReply) {
 
         const { name, email, password, photo} = patchUserBodySchema.parse(req.body)
 
+        const passwordHash = await hash(password, env.HASH_SALT_ROUNDS)
+
         const updateUser = await prisma.user.update({
             where: {
                 id: parseInt(id)
@@ -22,7 +26,7 @@ export async function patchUser(req: FastifyRequest, rep: FastifyReply) {
             data: {
                 name,
                 email,
-                password,
+                password: passwordHash,
                 photo,
             }
         })
