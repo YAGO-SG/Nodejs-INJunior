@@ -34,6 +34,6 @@ export async function patchUser(req: FastifyRequest, rep: FastifyReply) {
         rep.status(200).send(updateUser)
 
     } catch (error) {
-        rep.status(200).send(error)
+        rep.status(400).send(error)
     }
 }
